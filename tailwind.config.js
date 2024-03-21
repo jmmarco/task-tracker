@@ -1,3 +1,4 @@
+import formsPlugin from "@tailwindcss/forms";
 /** @type {import('tailwindcss').Config} */
 
 const lodgify = {
@@ -17,5 +18,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [formsPlugin],
 };
