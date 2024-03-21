@@ -6,6 +6,10 @@ const lodgify = {
     50: "#DDDDDD",
     100: "#CCCCCC",
     200: "#E5E5E5",
+    300: "#999999",
+  },
+  green: {
+    400: "#02BC9C",
   },
 };
 
