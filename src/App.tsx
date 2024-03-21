@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useReducer } from "react";
+import ProgressBarV2 from "./components/ProgressBarV2";
+import TaskBody from "./components/tasks/TaskBody";
+import TaskContainer from "./components/tasks/TaskContainer";
+import TaskGroup from "./components/tasks/TaskGroup";
+import TaskHeader from "./components/tasks/TaskHeader";
+import useGetTasks from "./hooks/useGetTasks";
+import groupsReducer from "./reducers/groupsReducer";
+import { initializeGroups } from "./lib/utils";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { tasks, loading /* error */ } = useGetTasks();
+
+  const [state, dispatch] = useReducer(groupsReducer, []);
+
+  useEffect(() => {
+    if (tasks.length > 0) {
+      dispatch({
+        type: "LOAD_TASKS",
+        payload: initializeGroups(tasks),
+      });
+    }
+  }, [tasks]);
+
+  // Nt = Vt * 100 / (Sum of all tasks values)
+
+  console.log("state", state);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <main className="min-h-screen bg-lodgify-gray-200 pt-24">
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <TaskContainer>
+          <TaskHeader title="Lodgify Grouped Tasks">
+            <ProgressBarV2
+              className="mt-2"
+              value={75}
+              name="Lodgify Grouped Tasks Completion Rate"
+            />
+          </TaskHeader>
+          <TaskBody>
+            {/* <pre>{JSON.stringify(state, null, 2)}</pre> */}
+            <TaskGroup tasksGroup={state} dispatch={dispatch} />
+          </TaskBody>
+        </TaskContainer>
+      )}
+    </main>
+  );
 }
 
-export default App
+export default App;
