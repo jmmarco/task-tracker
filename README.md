@@ -94,3 +94,9 @@ The project uses the default font family provided by Tailwind CSS. I decided to 
 ### Accessibility
 
 Semantic elements were used to build the structure of the application as well as in custom components. Efforts were made to includes ARIA attributes on non-semantic elements to improve the user experience for screen readers.
+
+## Author
+
+**Juan Marco**
+
+- GitHub: [@jmmarco](https://github.com/jmmarco)
