@@ -85,7 +85,6 @@ export default function groupsReducer(state: AppState, action: GroupActions) {
         return group;
       });
 
-      console.log(updatedGroups);
       const groupsTotalCheckedTaskValues =
         calculateGroupsTotalCheckedTaskValues(updatedGroups);
       return {
