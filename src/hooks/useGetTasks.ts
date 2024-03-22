@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import axios, { AxiosError } from "axios";
 import { TaskGroupItem } from "../types/task-types";
+import { useErrorBoundary } from "react-error-boundary";
 
 function useGetTasks() {
   const url = import.meta.env.VITE_API_URL;
   const [tasks, setTasks] = useState<TaskGroupItem[]>([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<null | AxiosError>(null);
+  const { showBoundary } = useErrorBoundary();
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -15,16 +16,16 @@ function useGetTasks() {
         const response = await axios.get(url);
         setTasks(response.data);
       } catch (error) {
-        setError(error as AxiosError);
+        showBoundary(error as AxiosError);
       } finally {
         setLoading(false);
       }
     };
 
     fetchTasks();
-  }, [url]);
+  }, [url, showBoundary]);
 
-  return { tasks, loading, error };
+  return { tasks, loading };
 }
 
 export default useGetTasks;
