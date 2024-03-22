@@ -6,6 +6,7 @@ import TaskHeader from "./components/tasks/TaskHeader";
 import useGetTasks from "./hooks/useGetTasks";
 import groupsReducer from "./reducers/groupsReducer";
 import ProgressBar from "./components/ProgressBar";
+import Loader from "./components/loader/Loader";
 
 function App() {
   const { tasks, loading /* error */ } = useGetTasks();
@@ -29,24 +30,20 @@ function App() {
   const { groups } = state;
 
   return (
-    <main className="min-h-screen bg-lodgify-gray-200 pt-24">
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <TaskContainer>
-          <TaskHeader title="Lodgify Grouped Tasks">
-            <ProgressBar
-              className="mt-2"
-              value={state.normalizedProgress}
-              name="Lodgify Grouped Tasks Completion Rate"
-            />
-          </TaskHeader>
-          <TaskBody>
-            {/* <pre>{JSON.stringify(state, null, 2)}</pre> */}
-            <TaskGroup tasksGroup={groups} dispatch={dispatch} />
-          </TaskBody>
-        </TaskContainer>
-      )}
+    <main className="relative min-h-screen bg-lodgify-gray-200 pt-24">
+      <Loader loading={loading} />
+      <TaskContainer>
+        <TaskHeader title="Lodgify Grouped Tasks">
+          <ProgressBar
+            className="mt-2"
+            value={state.normalizedProgress}
+            name="Lodgify Grouped Tasks Completion Rate"
+          />
+        </TaskHeader>
+        <TaskBody>
+          <TaskGroup tasksGroup={groups} dispatch={dispatch} />
+        </TaskBody>
+      </TaskContainer>
     </main>
   );
 }
