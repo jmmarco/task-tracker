@@ -1,3 +1,4 @@
+import { cn } from "../../lib/utils";
 import { GroupActions, GroupState } from "../../reducers/groupsReducer";
 import Button from "../buttons/Button";
 import ChevronDown from "../icons/ChevronDown";
@@ -18,45 +19,51 @@ export default function TaskGroup({ tasksGroup, dispatch }: TaskGroupProps) {
 
   return (
     <ul className="divide-y divide-lodgify-gray-100" aria-label="Grouped Tasks">
-      {tasksGroup.map((taskGroup) => (
-        <li key={taskGroup.name} className="p-6">
-          <div className="flex items-center ">
-            <NoteClip className="mr-4" />
-            <h3>{taskGroup.name}</h3>
-            <Button
-              className="ml-auto flex items-center gap-x-2 rounded text-base font-normal text-lodgify-gray-300 focus:outline-lodgify-green-400 focus-visible:outline-offset-4 focus-visible:outline-lodgify-green-400"
-              onClick={() => handleGroupToggle(taskGroup.name)}
+      {tasksGroup.map((taskGroup) => {
+        const selectedColorClass =
+          taskGroup.completedTasks === taskGroup.totalTaskValues
+            ? "text-lodgify-green-400 fill-lodgify-green-400"
+            : "text-lodgify-black";
+        return (
+          <li key={taskGroup.name} className="p-6">
+            <div className="flex items-center ">
+              <NoteClip className={cn("mr-4", selectedColorClass)} />
+              <h3 className={selectedColorClass}>{taskGroup.name}</h3>
+              <Button
+                className="ml-auto flex items-center gap-x-2 rounded text-base font-normal text-lodgify-gray-300 focus:outline-lodgify-green-400 focus-visible:outline-offset-4 focus-visible:outline-lodgify-green-400"
+                onClick={() => handleGroupToggle(taskGroup.name)}
+              >
+                {taskGroup.isVisible ? (
+                  <>
+                    Hide
+                    <ChevronUp className="fill-lodgify-gray-300 text-lodgify-gray-300" />
+                  </>
+                ) : (
+                  <>
+                    Show
+                    <ChevronDown className="fill-lodgify-gray-300 text-lodgify-gray-300" />
+                  </>
+                )}
+              </Button>
+            </div>
+            <Transition
+              show={taskGroup.isVisible}
+              enter="transition duration-100 ease-in"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="transform duration-100 transition ease-in-out"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
             >
-              {taskGroup.isVisible ? (
-                <>
-                  Hide
-                  <ChevronUp className="fill-lodgify-gray-300 text-lodgify-gray-300" />
-                </>
-              ) : (
-                <>
-                  Show
-                  <ChevronDown className="fill-lodgify-gray-300 text-lodgify-gray-300" />
-                </>
-              )}
-            </Button>
-          </div>
-          <Transition
-            show={taskGroup.isVisible}
-            enter="transition duration-100 ease-in"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="transform duration-100 transition ease-in-out"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <TaskList
-              name={taskGroup.name}
-              tasks={taskGroup.tasks}
-              dispatch={dispatch}
-            />
-          </Transition>
-        </li>
-      ))}
+              <TaskList
+                name={taskGroup.name}
+                tasks={taskGroup.tasks}
+                dispatch={dispatch}
+              />
+            </Transition>
+          </li>
+        );
+      })}
     </ul>
   );
 }
