@@ -16,7 +16,7 @@ export default function TaskList({ tasks, dispatch, name }: TaskListProps) {
     });
   };
   return (
-    <ul role="task-list" className="mt-8 space-y-4" aria-labelledby={name}>
+    <ul className="mt-8 space-y-4" aria-label={`${name} task list`}>
       {tasks.map((task) => (
         <li
           key={task.description}
