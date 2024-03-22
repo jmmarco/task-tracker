@@ -1,9 +1,7 @@
-import { cn } from "../../lib/utils";
-
 export default function ChevronDown({ className }: { className?: string }) {
   return (
     <svg
-      className={cn(className)}
+      className={className}
       width="24"
       height="24"
       fill="none"
