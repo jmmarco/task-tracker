@@ -30,7 +30,7 @@ function App() {
   const { groups } = state;
 
   return (
-    <main className="relative min-h-screen bg-lodgify-gray-200 pt-24">
+    <main className="relative flex min-h-screen justify-center py-8">
       <Loader loading={loading} />
       <TaskContainer>
         <TaskHeader title="Lodgify Grouped Tasks">
