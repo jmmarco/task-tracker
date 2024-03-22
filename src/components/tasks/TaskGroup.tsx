@@ -1,6 +1,7 @@
 import { GroupActions, GroupState } from "../../reducers/groupsReducer";
 import Button from "../buttons/Button";
 import ChevronDown from "../icons/ChevronDown";
+import ChevronUp from "../icons/ChevronUp";
 import NoteClip from "../icons/NoteClip";
 import TaskList from "./TaskList";
 import { Transition } from "@headlessui/react";
@@ -26,8 +27,17 @@ export default function TaskGroup({ tasksGroup, dispatch }: TaskGroupProps) {
               className="ml-auto flex items-center gap-x-2 rounded text-base font-normal text-lodgify-gray-300 focus:outline-lodgify-green-400 focus-visible:outline-offset-4 focus-visible:outline-lodgify-green-400"
               onClick={() => handleGroupToggle(taskGroup.name)}
             >
-              {taskGroup.isVisible ? "Hide" : "Show"}
-              <ChevronDown className="fill-lodgify-gray-300 text-lodgify-gray-300" />
+              {taskGroup.isVisible ? (
+                <>
+                  Hide
+                  <ChevronUp className="fill-lodgify-gray-300 text-lodgify-gray-300" />
+                </>
+              ) : (
+                <>
+                  Show
+                  <ChevronDown className="fill-lodgify-gray-300 text-lodgify-gray-300" />
+                </>
+              )}
             </Button>
           </div>
           <Transition
