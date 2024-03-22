@@ -2,6 +2,7 @@ import formsPlugin from "@tailwindcss/forms";
 /** @type {import('tailwindcss').Config} */
 
 const lodgify = {
+  black: "#333333",
   gray: {
     50: "#EEEEEE",
     100: "#CCCCCC",
