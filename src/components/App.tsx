@@ -1,15 +1,15 @@
 import { useEffect, useReducer } from "react";
-import TaskBody from "./components/tasks/TaskBody";
-import TaskContainer from "./components/tasks/TaskContainer";
-import TaskGroup from "./components/tasks/TaskGroup";
-import TaskHeader from "./components/tasks/TaskHeader";
-import useGetTasks from "./hooks/useGetTasks";
-import groupsReducer from "./reducers/groupsReducer";
-import ProgressBar from "./components/progress/ProgressBar";
-import Loader from "./components/loader/Loader";
+import TaskBody from "./tasks/TaskBody";
+import TaskContainer from "./tasks/TaskContainer";
+import TaskGroup from "./tasks/TaskGroup";
+import TaskHeader from "./tasks/TaskHeader";
+import useGetTasks from "../hooks/useGetTasks";
+import groupsReducer from "../reducers/groupsReducer";
+import ProgressBar from "./progress/ProgressBar";
+import Loader from "./loader/Loader";
 
 function App() {
-  const { tasks, loading /* error */ } = useGetTasks();
+  const { tasks, loading } = useGetTasks();
 
   const [state, dispatch] = useReducer(groupsReducer, {
     groups: [],
