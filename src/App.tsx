@@ -5,7 +5,7 @@ import TaskGroup from "./components/tasks/TaskGroup";
 import TaskHeader from "./components/tasks/TaskHeader";
 import useGetTasks from "./hooks/useGetTasks";
 import groupsReducer from "./reducers/groupsReducer";
-import ProgressBar from "./components/ProgressBar";
+import ProgressBar from "./components/progress/ProgressBar";
 import Loader from "./components/loader/Loader";
 
 function App() {

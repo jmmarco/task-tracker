@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { TaskGroupItem } from "../types";
+import { TaskGroupItem } from "../types/task-types";
 import { GroupState } from "../reducers/groupsReducer";
 
 export function cn(...inputs: ClassValue[]) {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios, { AxiosError } from "axios";
-import { TaskGroupItem } from "../types";
+import { TaskGroupItem } from "../types/task-types";
 
 function useGetTasks() {
   const url = import.meta.env.VITE_API_URL;

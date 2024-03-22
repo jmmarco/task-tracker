@@ -1,4 +1,4 @@
-import { cn } from "../lib/utils";
+import { cn } from "../../lib/utils";
 
 interface ProgressBarProps {
   name: string;
@@ -23,7 +23,7 @@ export default function ProgressBar({
     >
       <div
         className={cn(
-          "bg-lodgify-green-400 flex justify-end rounded-full p-2 pr-4 text-center text-xs font-medium leading-none text-green-100 duration-300 ease-in",
+          "flex justify-end rounded-full bg-lodgify-green-400 p-2 pr-4 text-center text-xs font-medium leading-none text-green-100 duration-300 ease-in",
           className,
         )}
         aria-valuenow={value}

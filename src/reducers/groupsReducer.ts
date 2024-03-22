@@ -4,7 +4,7 @@ import {
   calculateNormalizedProgress,
   initializeGroups,
 } from "../lib/utils";
-import { TaskGroupItem, TaskItem } from "../types";
+import { TaskGroupItem, TaskItem } from "../types/task-types";
 
 export type GroupState = {
   name: string;

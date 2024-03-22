@@ -1,5 +1,5 @@
 import { GroupActions, GroupState } from "../../reducers/groupsReducer";
-import Button from "../Button";
+import Button from "../buttons/Button";
 import ChevronDown from "../icons/ChevronDown";
 import NoteClip from "../icons/NoteClip";
 import TaskList from "./TaskList";

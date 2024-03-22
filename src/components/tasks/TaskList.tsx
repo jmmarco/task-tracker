@@ -1,5 +1,5 @@
 import { GroupActions } from "../../reducers/groupsReducer";
-import { TaskItem } from "../../types";
+import { TaskItem } from "../../types/task-types";
 import Checkbox from "../inputs/Checkbox";
 
 interface TaskListProps {
