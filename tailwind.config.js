@@ -3,7 +3,7 @@ import formsPlugin from "@tailwindcss/forms";
 
 const lodgify = {
   gray: {
-    50: "#DDDDDD",
+    50: "#EEEEEE",
     100: "#CCCCCC",
     200: "#E5E5E5",
     300: "#999999",
