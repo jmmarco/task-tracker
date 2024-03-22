@@ -1,27 +1,33 @@
+import { GroupActions } from "../../reducers/groupsReducer";
 import { TaskItem } from "../../types";
+import Checkbox from "../inputs/Checkbox";
 
 interface TaskListProps {
+  name: string;
   tasks: TaskItem[];
+  dispatch: React.Dispatch<GroupActions>;
 }
 
-export default function TaskList({ tasks }: TaskListProps) {
+export default function TaskList({ tasks, dispatch, name }: TaskListProps) {
+  const handleTaskChange = (task: TaskItem) => {
+    dispatch({
+      type: "TOGGLE_TASK",
+      payload: { groupName: name, taskDescription: task.description },
+    });
+  };
   return (
-    <ul role="task-list" className="mt-8 space-y-4">
+    <ul role="task-list" className="mt-8 space-y-4" aria-labelledby={name}>
       {tasks.map((task) => (
         <li
           key={task.description}
           role="task"
           className="flex items-center gap-x-4"
         >
-          <input
-            type="checkbox"
-            id={task.description}
+          <Checkbox
+            onChange={() => handleTaskChange(task)}
             defaultChecked={task.checked}
-            className="text-lodgify-green-400 h-4 w-4 rounded border-gray-300 focus:ring-transparent"
+            name={task.description}
           />
-          <label className="text-base" htmlFor={task.description}>
-            {task.description}
-          </label>
         </li>
       ))}
     </ul>
