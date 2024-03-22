@@ -14,3 +14,33 @@ export function initializeGroups(taskGroups: TaskGroupItem[]): GroupState {
     totalTaskValues: group.tasks.reduce((total, task) => total + task.value, 0),
   }));
 }
+
+export function calculateGroupTotalTaskValues(groups: TaskGroupItem[]) {
+  return groups.reduce((total, group) => {
+    return (
+      total +
+      group.tasks.reduce((groupTotal, task) => groupTotal + task.value, 0)
+    );
+  }, 0);
+}
+
+export function calculateGroupsTotalCheckedTaskValues(groups: TaskGroupItem[]) {
+  return groups.reduce((total, group) => {
+    return (
+      total +
+      group.tasks.reduce(
+        (groupTotal, task) =>
+          task.checked ? groupTotal + task.value : groupTotal + 0,
+        0,
+      )
+    );
+  }, 0);
+}
+
+export function calculateNormalizedProgress(
+  totalTaskValues: number,
+  totalCheckedTaskValues: number,
+): number {
+  // Nt = Vt * 100 / ∑(Vt)
+  return (totalCheckedTaskValues * 100) / totalTaskValues;
+}
