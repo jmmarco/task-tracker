@@ -16,7 +16,7 @@ export default function ProgressBar({
   const dynamicWidth = `${value}%`;
   const displayedValue = displayValueAsInteger ? Math.floor(value) : value;
   return (
-    <div className="w-full rounded-full bg-gray-200 dark:bg-gray-700">
+    <div className="bg-lodgify-green-50 w-full rounded-full">
       <div
         className={cn(
           "flex justify-end rounded-full bg-lodgify-green-400 p-2 pr-4 text-center text-xs font-medium leading-none text-green-100 duration-300 ease-in",
