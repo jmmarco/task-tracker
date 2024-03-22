@@ -36,9 +36,9 @@ The application will be available at `http://localhost:3000`.
 
 To build the project for production, run `npm run build`. This will create a `build` directory with the compiled project.
 
-### Development Notes
+## Development Notes
 
-#### State Management
+### State Management
 
 One of the challenges to build this project was to decide how state would be handled in the application. I opted to use React's useReducer hook to manage the state of the application inside a single reducer file. The state was expanded to included additional properties that were not present in the API response.
 This allowed me to have a single source of truth for the application state and to have a clear separation of concerns between the components that manage the state and the components that consume the state.
@@ -62,29 +62,29 @@ There are three actions that can be dispatched to the reducer:
 
 1. `LOAD_TASKS` - Load the tasks from the API response and expands the application state with the additional properties mentioned above. In an effort to keep the code as simple and clean as possible, the following helper functions were created to help:
 
-- `initializeGroups` - Initializes the groups array with the tasks from the API response and additional properties mentioned above
-- `calculateGroupTotalTaskValues` - Calculates the total task values for each group
-- `calculateGroupsTotalCheckedTaskValues` - Calculates the total checked task values for all groups
-- `calculateNormalizedProgress` - Calculates the normalized progress value for the progress bar
+   - `initializeGroups` - Initializes the groups array with the tasks from the API response and additional properties mentioned above
+   - `calculateGroupTotalTaskValues` - Calculates the total task values for each group
+   - `calculateGroupsTotalCheckedTaskValues` - Calculates the total checked task values for all groups
+   - `calculateNormalizedProgress` - Calculates the normalized progress value for the progress bar
 
 2. `TOGGLE_GROUP` - Toggles the visibility of a group by changing the `isVisible` property
 
 3. `TOGGLE_TASK` - Toggles the specific task's `checked` boolean value and updates the group state so the application state is updated accordingly. This action also makes use of the same helper functions used in the `LOAD_TASKS` action to update the state.
 
-#### Components
+### Components
 
 Components were created to be as reusable as possible. They're are placed inside the `components` folder and are divided into categories for better organization. This was done to make the components more modular and easier to maintain.
 
-#### Data Fetching
+### Data Fetching
 
 The fetching of data was done by creating a custom hook `useGetTasks` that uses Axios to fetch the data from the API. The hook also includes a loading state and an error state to handle the different states of the request. The hook is used in the `App` component to fetch the data when the application is loaded.
 
-#### Error Handling
+### Error Handling
 
 React ErrorBoundary component is used around the main `App` component to "catch" errors and render a fallback UI. In this case an `ErrorPage` component.
 It also supports several ways to render a fallback UI as well as a useful hook and logging capabilities.
 
-#### Styling
+### Styling
 
 Styling has been handled by using Tailwind CSS. The utility-first approach of Tailwind CSS allowed me to quickly style the components. The `tailwind.config.js` file was also updated to include additional configurations for the project. The HeadlessUI library was employed for managing transitions, as it enables the addition of enter/leave transitions to conditionally rendered elements.
 Since the project didn't contain a lot of icons I decided to not include a separate icon library and instead opted to create custom icon components from the SVG code provided in the original Figma design.
