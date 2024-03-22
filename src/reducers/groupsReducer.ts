@@ -11,6 +11,7 @@ export type GroupState = {
   tasks: TaskItem[];
   isVisible: boolean;
   totalTaskValues: number;
+  completedTasks: number;
 }[];
 
 export type AppState = {
@@ -63,21 +64,28 @@ export default function groupsReducer(state: AppState, action: GroupActions) {
     case "TOGGLE_TASK": {
       const updatedGroups = state.groups.map((group) => {
         if (group.name === action.payload.groupName) {
+          const updatedTasks = group.tasks.map((task) => {
+            if (task.description === action.payload.taskDescription) {
+              return {
+                ...task,
+                checked: !task.checked,
+              };
+            }
+            return task;
+          });
           return {
             ...group,
-            tasks: group.tasks.map((task) => {
-              if (task.description === action.payload.taskDescription) {
-                return {
-                  ...task,
-                  checked: !task.checked,
-                };
-              }
-              return task;
-            }),
+            tasks: updatedTasks,
+            completedTasks: updatedTasks.reduce(
+              (total, task) => (task.checked ? task.value + total : total),
+              0,
+            ),
           };
         }
         return group;
       });
+
+      console.log(updatedGroups);
       const groupsTotalCheckedTaskValues =
         calculateGroupsTotalCheckedTaskValues(updatedGroups);
       return {
