@@ -89,6 +89,7 @@ It also supports several ways to render a fallback UI as well as a useful hook a
 Styling has been handled by using Tailwind CSS. The utility-first approach of Tailwind CSS allowed me to quickly style the components. The `tailwind.config.js` file was also updated to include additional configurations for the project. The HeadlessUI library was employed for managing transitions, as it enables the addition of enter/leave transitions to conditionally rendered elements.
 Since the project didn't contain a lot of icons I decided to not include a separate icon library and instead opted to create custom icon components from the SVG code provided in the original Figma design.
 The design files didn't include any specific details regarding the focus state of the checkboxes, so I decided to use a ring with the same green color as the checkbox to indicate the focus state.
+The project uses the default font family provided by Tailwind CSS. I decided to use the default font family to keep the project simple and avoid adding additional dependencies.
 
 ### Accessibility
 
