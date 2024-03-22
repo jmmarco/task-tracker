@@ -1,4 +1,10 @@
-import { TaskItem } from "../types";
+import {
+  calculateGroupTotalTaskValues,
+  calculateGroupsTotalCheckedTaskValues,
+  calculateNormalizedProgress,
+  initializeGroups,
+} from "../lib/utils";
+import { TaskGroupItem, TaskItem } from "../types";
 
 export type GroupState = {
   name: string;
@@ -7,30 +13,55 @@ export type GroupState = {
   totalTaskValues: number;
 }[];
 
+export type AppState = {
+  groups: GroupState;
+  groupsTotalTaskValues: number;
+  groupsTotalCheckedTaskValues: number;
+  normalizedProgress: number;
+};
+
 export type GroupActions =
   | { type: "TOGGLE_GROUP"; payload: { groupName: string } }
   | {
       type: "TOGGLE_TASK";
       payload: { groupName: string; taskDescription: string };
     }
-  | { type: "LOAD_TASKS"; payload: GroupState };
+  | { type: "LOAD_TASKS"; payload: TaskGroupItem[] };
 
-export default function groupsReducer(state: GroupState, action: GroupActions) {
+export default function groupsReducer(state: AppState, action: GroupActions) {
   switch (action.type) {
-    case "LOAD_TASKS":
-      return action.payload;
+    case "LOAD_TASKS": {
+      const groupsTotalTaskValues = calculateGroupTotalTaskValues(
+        action.payload,
+      );
+      const groupsTotalCheckedTaskValues =
+        calculateGroupsTotalCheckedTaskValues(action.payload);
+      return {
+        ...state,
+        groups: initializeGroups(action.payload),
+        groupsTotalTaskValues: groupsTotalTaskValues,
+        groupsTotalCheckedTaskValues,
+        normalizedProgress: calculateNormalizedProgress(
+          groupsTotalTaskValues,
+          groupsTotalCheckedTaskValues,
+        ),
+      };
+    }
     case "TOGGLE_GROUP":
-      return state.map((group) => {
-        if (group.name === action.payload.groupName) {
-          return {
-            ...group,
-            isVisible: !group.isVisible,
-          };
-        }
-        return group;
-      });
-    case "TOGGLE_TASK":
-      return state.map((group) => {
+      return {
+        ...state,
+        groups: state.groups.map((group) => {
+          if (group.name === action.payload.groupName) {
+            return {
+              ...group,
+              isVisible: !group.isVisible,
+            };
+          }
+          return group;
+        }),
+      };
+    case "TOGGLE_TASK": {
+      const updatedGroups = state.groups.map((group) => {
         if (group.name === action.payload.groupName) {
           return {
             ...group,
@@ -47,6 +78,19 @@ export default function groupsReducer(state: GroupState, action: GroupActions) {
         }
         return group;
       });
+      const groupsTotalCheckedTaskValues =
+        calculateGroupsTotalCheckedTaskValues(updatedGroups);
+      return {
+        ...state,
+        groups: updatedGroups,
+        groupsTotalCheckedTaskValues: groupsTotalCheckedTaskValues,
+        normalizedProgress: calculateNormalizedProgress(
+          state.groupsTotalTaskValues,
+          groupsTotalCheckedTaskValues,
+        ),
+      };
+    }
+
     default:
       return state;
   }
