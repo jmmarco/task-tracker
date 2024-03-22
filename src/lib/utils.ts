@@ -52,3 +52,12 @@ export function calculateNormalizedProgress(
   // Nt = Vt * 100 / ∑(Vt)
   return (totalCheckedTaskValues * 100) / totalTaskValues;
 }
+
+export function LogError(error: Error, info: React.ErrorInfo) {
+  if (import.meta.env.DEV) {
+    console.log(error, info);
+  }
+  if (import.meta.env.PROD) {
+    // For production do something with the error, e.g. log to an external API
+  }
+}
