@@ -5,6 +5,11 @@ import { useErrorBoundary } from "react-error-boundary";
 
 function useGetTasks() {
   const url = import.meta.env.VITE_API_URL;
+  if (!url) {
+    throw new Error(
+      "API URL is not defined. Check that .env file is set up correctly. Refer to README for details.",
+    );
+  }
   const [tasks, setTasks] = useState<TaskGroupItem[]>([]);
   const [loading, setLoading] = useState(false);
   const { showBoundary } = useErrorBoundary();
