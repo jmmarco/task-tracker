@@ -34,7 +34,7 @@ The application will be available at `http://localhost:3000`.
 
 ## Building the Project
 
-To build the project for production, run `npm run build`. This will create a `build` directory with the compiled project.
+To build the project for production, run `npm run build`. This will create a `build` directory with the compiled project. Alternatively, you can access a live production version of the project [here](https://lodgify-task-tracker.vercel.app).
 
 ## Development Notes
 
