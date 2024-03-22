@@ -7,6 +7,10 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export function convertToElementId(str: string) {
+  return str.replace(/[^a-z]/gi, "-");
+}
+
 export function initializeGroups(taskGroups: TaskGroupItem[]): GroupState {
   return taskGroups.map((group) => ({
     ...group,
