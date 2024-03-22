@@ -15,6 +15,10 @@ export function initializeGroups(taskGroups: TaskGroupItem[]): GroupState {
   return taskGroups.map((group) => ({
     ...group,
     isVisible: false,
+    completedTasks: group.tasks.reduce(
+      (total, task) => (task.checked ? task.value + total : total),
+      0,
+    ),
     totalTaskValues: group.tasks.reduce((total, task) => total + task.value, 0),
   }));
 }
