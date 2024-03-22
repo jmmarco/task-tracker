@@ -16,7 +16,7 @@ export default function TaskGroup({ tasksGroup, dispatch }: TaskGroupProps) {
   };
 
   return (
-    <ul className="divide-y divide-lodgify-gray-100">
+    <ul className="divide-y divide-lodgify-gray-100" aria-label="Grouped Tasks">
       {tasksGroup.map((taskGroup) => (
         <li key={taskGroup.name} className="p-6">
           <div className="flex items-center ">
