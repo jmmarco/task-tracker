@@ -18,11 +18,7 @@ export default function TaskList({ tasks, dispatch, name }: TaskListProps) {
   return (
     <ul className="mt-8 space-y-4" aria-label={`${name} task list`}>
       {tasks.map((task) => (
-        <li
-          key={task.description}
-          role="task"
-          className="flex items-center gap-x-4"
-        >
+        <li key={task.description} className="flex items-center gap-x-4">
           <Checkbox
             onChange={() => handleTaskChange(task)}
             defaultChecked={task.checked}
