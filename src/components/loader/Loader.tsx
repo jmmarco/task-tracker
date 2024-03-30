@@ -7,9 +7,9 @@ export default function Loader({ loading }: LoaderProps) {
     return (
       <div
         className="absolute inset-0 z-50 m-auto flex items-center justify-center overflow-y-hidden bg-white opacity-80"
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
+        aria-live="polite"
+        role="status"
+        aria-label="Loading..."
       >
         <svg
           width="44"
