@@ -1,4 +1,4 @@
-# Lodgify - FE Technical Challenge
+# Task Tracker
 
 This project is a front-end task tracker
 
@@ -20,7 +20,7 @@ This project uses the following dependencies:
 To run this project, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/jmmarco/task-tracker.git`
-2. Navigate to the project directory: `cd lodgify-task-tracker`
+2. Navigate to the project directory: `cd task-tracker`
 3. Install the dependencies: `npm install`
 4. Locate the file `.env.example` in the root of the project and rename it to `.env`. Update and save the entry with the correct value for the API URL. In this case, it should be:
 
