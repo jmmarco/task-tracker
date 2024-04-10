@@ -18,30 +18,30 @@ export default function TaskGroup({ tasksGroup, dispatch }: TaskGroupProps) {
   };
 
   return (
-    <ul className="divide-y divide-lodgify-gray-100" aria-label="Grouped Tasks">
+    <ul className="divide-y divide-gray-100" aria-label="Grouped Tasks">
       {tasksGroup.map((taskGroup) => {
         const selectedColorClass =
           taskGroup.completedTasks === taskGroup.totalTaskValues
-            ? "text-lodgify-green-400 fill-lodgify-green-400"
-            : "text-lodgify-black";
+            ? "text-green-400 fill-green-400"
+            : "text-slate-900";
         return (
           <li key={taskGroup.name} className="p-6">
             <div className="flex items-center ">
               <NoteClip className={cn("mr-4", selectedColorClass)} />
               <h3 className={selectedColorClass}>{taskGroup.name}</h3>
               <Button
-                className="ml-auto flex items-center gap-x-2 rounded text-base font-normal text-lodgify-gray-300 focus:outline-lodgify-green-400 focus-visible:outline-offset-4 focus-visible:outline-lodgify-green-400"
+                className="ml-auto flex items-center gap-x-2 rounded text-base font-normal text-gray-300 focus:outline-green-400 focus-visible:outline-offset-4 focus-visible:outline-green-400"
                 onClick={() => handleGroupToggle(taskGroup.name)}
               >
                 {taskGroup.isVisible ? (
                   <>
                     Hide
-                    <ChevronUp className="fill-lodgify-gray-300 text-lodgify-gray-300" />
+                    <ChevronUp className="fill-gray-300 text-gray-300" />
                   </>
                 ) : (
                   <>
                     Show
-                    <ChevronDown className="fill-lodgify-gray-300 text-lodgify-gray-300" />
+                    <ChevronDown className="fill-gray-300 text-gray-300" />
                   </>
                 )}
               </Button>

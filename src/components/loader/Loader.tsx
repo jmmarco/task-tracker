@@ -16,7 +16,7 @@ export default function Loader({ loading }: LoaderProps) {
           height="44"
           viewBox="0 0 44 44"
           xmlns="http://www.w3.org/2000/svg"
-          className=" h-24 w-24 stroke-lodgify-green-400"
+          className="h-24 w-24 stroke-green-400"
         >
           <g fill="none" fillRule="evenodd" strokeWidth="2">
             <circle cx="22" cy="22" r="1">

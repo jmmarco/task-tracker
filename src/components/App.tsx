@@ -33,11 +33,11 @@ function App() {
     <main className="relative flex min-h-screen justify-center py-8">
       <Loader loading={loading} />
       <TaskContainer>
-        <TaskHeader title="Lodgify Grouped Tasks">
+        <TaskHeader title="Grouped Tasks">
           <ProgressBar
             className="mt-2"
             value={state.normalizedProgress}
-            name="Lodgify Grouped Tasks Completion Rate"
+            name="Grouped Tasks Completion Rate"
           />
         </TaskHeader>
         <TaskBody>
