@@ -1,6 +1,6 @@
 # Lodgify - FE Technical Challenge
 
-This project is a front-end technical challenge for Lodgify.
+This project is a front-end task tracker
 
 ## Dependencies
 
@@ -19,13 +19,13 @@ This project uses the following dependencies:
 
 To run this project, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/jmmarco/lodgify-task-tracker.git`
+1. Clone the repository: `git clone https://github.com/jmmarco/task-tracker.git`
 2. Navigate to the project directory: `cd lodgify-task-tracker`
 3. Install the dependencies: `npm install`
 4. Locate the file `.env.example` in the root of the project and rename it to `.env`. Update and save the entry with the correct value for the API URL. In this case, it should be:
 
 ```
-VITE_API_URL=https://gist.githubusercontent.com/huvber/ba0d534f68e34f1be86d7fe7eff92c96/raw/98a91477905ea518222a6d88dd8b475328a632d3/mock-progress
+VITE_API_URL=https://gist.githubusercontent.com/jmmarco/ea8ddcbf446eb47ad221234dfd3a0b21/raw/67077ea80fecc825c20109ddcf6f97d9e96516b3/sample_tasks.json
 ```
 
 4. Start the development server: `npm start`
@@ -34,7 +34,7 @@ The application will be available at `http://localhost:3000`.
 
 ## Building the Project
 
-To build the project for production, run `npm run build`. This will create a `build` directory with the compiled project. Alternatively, you can access a live production version of the project [here](https://lodgify-task-tracker.vercel.app).
+To build the project for production, run `npm run build`. This will create a `build` directory with the compiled project. Alternatively, you can access a live production version of the project [here](https://fry-task-tracker.vercel.app).
 
 ## Development Notes
 
